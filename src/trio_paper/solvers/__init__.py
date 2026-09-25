@@ -1,0 +1,1 @@
+"""Optional inverse-solver adapters."""

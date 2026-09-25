@@ -1,0 +1,16 @@
+{
+  "network": {"source": "pandapower.networks.case30", "power_flow": {"algorithm": "nr", "init": "flat", "max_iteration": 20, "numba": false}},
+  "renewables": {"count": 5, "buses": [7,17,25,2,15], "q_mvar": 0.0},
+  "security": {"line_loading_limit": 1.0, "transformer_loading_limit": 1.0, "voltage_limits": "pandapower bus limits"},
+  "candidate_per_bus_pmax_mw": [25.0,35.0,50.0,75.0],
+  "selected_per_bus_pmax_mw": 25.0,
+  "candidate_sobol_points": 2048,
+  "candidate_path_points": 401,
+  "selection_rule": "Choose the smallest candidate whose all-maximum corner is infeasible, equal-injection path has a feasible interior and ends infeasible, Sobol feasible fraction is in [0.10,0.90], and nonconvergence fraction is at most 0.05.",
+  "dataset": {"seed": 20260916, "sobol_points": 20000, "split_seed": 101, "split_sizes": {"train": 12000, "validation": 4000, "test": 4000}},
+  "model_seeds": [101,102,103,104,105,106,107,108,109,110],
+  "models": {"trio": {"experts": 128, "radial_units": 32, "parameters": 15104}, "smooth": {"widths": [117,121], "parameters": 15102}, "cpwl": {"widths": [117,121], "parameters": 15102}, "icnn": {"width": 116, "parameters": 15086}},
+  "training": {"max_steps": 10000000, "batch_size": 1024, "learning_rate": 0.001, "validation_every": 500, "patience_steps": 10000, "relative_min_delta": 0.002, "shield_steps": 120000, "checkpoint_start_step": 120000, "soft_steps": 120000, "temperature_start": 0.2, "temperature_end": 0.01, "sampling": "with_replacement"},
+  "calibration": {"candidate_count": 50001, "minimum": 0.8, "maximum": 1.0, "false_feasible_rate_limit": 0.001},
+  "optimization": {"scip_timeout_seconds": 30, "ipopt_starts": 8, "ipopt_rng_seed": 704, "external_feasibility_tolerance": 1e-6}
+}

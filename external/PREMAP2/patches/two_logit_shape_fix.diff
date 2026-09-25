@@ -1,0 +1,25 @@
+--- a/PreimageApproxForNNs/auto_LiRPA/optimize_input_poly.py
++++ b/PreimageApproxForNNs/auto_LiRPA/optimize_input_poly.py
+@@
+-        if not isinstance(root[i].lA, eyeC) and not isinstance(root[i].lA, Patches):
+-            lA = root[i].lA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_lower else None
+-        if not isinstance(root[i].uA, eyeC) and not isinstance(root[i].uA, Patches):
+-            uA = root[i].uA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_upper else None
++        if type(root[i]) == BoundInput:
++            if not isinstance(root[i].lA, eyeC) and not isinstance(root[i].lA, Patches):
++                lA = root[i].lA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_lower else None
++            if not isinstance(root[i].uA, eyeC) and not isinstance(root[i].uA, Patches):
++                uA = root[i].uA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_upper else None
+--- a/PreimageApproxForNNs/auto_LiRPA/backward_bound.py
++++ b/PreimageApproxForNNs/auto_LiRPA/backward_bound.py
+@@
+-        if not isinstance(root[i].lA, eyeC) and not isinstance(root[i].lA, Patches):
+-            lA = root[i].lA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_lower else None
+-        if not isinstance(root[i].uA, eyeC) and not isinstance(root[i].uA, Patches):
+-            uA = root[i].uA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_upper else None
++        if type(root[i]) == BoundInput:
++            if not isinstance(root[i].lA, eyeC) and not isinstance(root[i].lA, Patches):
++                lA = root[i].lA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_lower else None
++            if not isinstance(root[i].uA, eyeC) and not isinstance(root[i].uA, Patches):
++                uA = root[i].uA.reshape(output_dim, batch_size, -1).transpose(0, 1) if bound_upper else None
+

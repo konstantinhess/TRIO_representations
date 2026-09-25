@@ -1,0 +1,21 @@
+--- a/src/premap2/domains.py
++++ b/src/premap2/domains.py
+@@ DomainList.save
+             domain_list.append((
+                 d.preimg_A.detach(),
+                 d.preimg_b.detach().ravel(),
+                 d.preimg_vol,
+                 d.approx_vol,
+                 d.history,
++                None if d.poly_A is None else d.poly_A.detach(),
++                None if d.poly_b is None else d.poly_b.detach().ravel(),
++                None if d.lower_in is None else d.lower_in.detach(),
++                None if d.upper_in is None else d.upper_in.detach(),
+             ))
+
+This is an experiment-local serialization-only addition. `poly_A`, `poly_b`,
+and input bounds are already computed before `DomainList.save`; retaining them
+allows the saved native ReLU-split domain to be decoded as the intersection of
+its output-margin and branch-region inequalities.  It does not change bound
+computation, refinement, scheduling, or output values.
+

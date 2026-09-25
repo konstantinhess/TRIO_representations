@@ -1,0 +1,17 @@
+{
+  "raw_domain": {"x1": [-2.0, 2.0], "x2": [-1.5, 1.5]},
+  "normalization": {"center": [0.0, 0.0], "scale": [0.5, 0.6666666666666666]},
+  "data": {"train_size": 100000, "validation_size": 5000, "test_size": 5000, "train_seed": 2601, "validation_seed": 2602, "test_seed": 2603},
+  "model_seeds": [101,102,103,104,105,106,107,108,109,110],
+  "capacities": [16,32,64,128,256],
+  "qualitative_capacities": [16,64,256],
+  "qualitative_seed": 101,
+  "trio": {"backbone": "wide_tanh", "radial_units": 8, "initialization": "mixed_fps", "low_target_fraction": 0.10},
+  "cpwl_widths": {"16": [16,25], "32": [23,37], "64": [37,48], "128": [54,68], "256": [73,103]},
+  "icnn_widths": {"16": 19, "32": 28, "64": 41, "128": 59, "256": 85},
+  "thresholds": [-0.8,-0.1,0.4,0.9,2.15],
+  "qualitative_thresholds": [-0.1,0.9],
+  "premap2": {"capacity": 64, "threshold": 0.4, "budgets": [64,128,256,512,1024,2048], "split": "input", "approximation": "under"},
+  "geometry": {"grid_resolution": 1201, "connectivity": 8},
+  "training": {"max_steps": 10000000, "batch_size": 1024, "learning_rate": 0.001, "validation_every": 500, "patience_steps": 30000, "relative_min_delta": 0.002, "shield_steps": 120000, "checkpoint_start_step": 0, "soft_steps": 120000, "temperature_start": 0.2, "temperature_end": 0.01, "sampling": "epoch_shuffle"}
+}
