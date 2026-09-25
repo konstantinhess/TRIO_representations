@@ -45,10 +45,11 @@ class CachedEllipsoidProjector:
                 unique.append(candidate)
         return unique
 
-    def project_compiled(self, compiled, query):
+    def project_compiled(self, compiled, query, expert_indices=None):
         query = np.asarray(query, dtype=np.float64)
         best, best_value = None, float("inf")
-        for index in compiled.expert_indices:
+        indices = compiled.expert_indices if expert_indices is None else expert_indices
+        for index in indices:
             point = self._onto_ellipsoid(index, compiled.squared_radii[index], query)
             if np.linalg.norm(point) > 1 + EPS:
                 candidates = self._circle_intersections(index, compiled.squared_radii[index])

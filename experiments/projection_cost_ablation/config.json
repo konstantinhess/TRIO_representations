@@ -1,0 +1,29 @@
+{
+  "experiment_name": "projection_cost_ablation",
+  "context": "z^8",
+  "dtype": "float64",
+  "experts": 128,
+  "target": 0.25,
+  "seeds": [101,102,103,104,105,106,107,108,109,110],
+  "query_count": 60,
+  "desired_radius_values": [0.18,0.20,0.22,0.25,0.28,0.30,0.32,0.35,0.38,0.40,0.42],
+  "geometry_radius_tolerance": 2e-7,
+  "membership_grid_resolution": 101,
+  "compile_timing_repetitions": 20,
+  "projection_timing_repetitions": 20,
+  "projection_warmups": 1,
+  "variants": [
+    {"key": "broken_power", "label": "Broken-Power", "backbone": "broken_power"},
+    {"key": "spline", "label": "Spline", "backbone": "spline", "bins": 6},
+    {"key": "neural_small", "label": "Neural-small", "backbone": "wide_softplus", "units": 11},
+    {"key": "neural_mid", "label": "Neural-mid", "backbone": "wide_softplus", "units": 128},
+    {"key": "neural_large", "label": "Neural-large", "backbone": "wide_softplus", "units": 1300}
+  ],
+  "expected_parameter_counts": {
+    "broken_power": 1152,
+    "spline": 3200,
+    "neural_small": 5120,
+    "neural_mid": 50048,
+    "neural_large": 500096
+  }
+}

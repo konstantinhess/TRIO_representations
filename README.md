@@ -77,6 +77,23 @@ Sobol dataset. Calibration uses validation data only: among 50,001 candidates,
 it selects the largest threshold whose validation false-feasible rate is at
 most 0.001. Every returned design is re-evaluated by the AC oracle.
 
+## Projection-cost ablation
+
+This untrained control fixes one compiled Q128 ellipsoid union and varies only
+the radial backbone that is compiled away. Compilation and repeated exact
+projection are timed separately.
+
+```bash
+python -m experiments.projection_cost_ablation.run validate --seed 101
+python -m experiments.projection_cost_ablation.run seed --seed 101 --output results/projection_cost_ablation
+python -m experiments.projection_cost_ablation.run sweep --output results/projection_cost_ablation
+python -m experiments.projection_cost_ablation.aggregate --input results/projection_cost_ablation --output results/projection_cost_ablation/aggregate
+```
+
+The sweep is restart-safe and covers seeds 101–110. Its aggregate reports the
+mean and sample SD of per-seed compilation time, projection time/query, and
+time/active ellipse. No training or accuracy metric belongs to this ablation.
+
 ## Layout
 
 - `src/trio_paper/`: shared TRIO, baselines, compilation, projection, timing,
